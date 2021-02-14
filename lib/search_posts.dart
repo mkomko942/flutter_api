@@ -133,7 +133,6 @@ class _SearchPostsState extends State<SearchPosts> {
     List<Widget> cards = [];
     for (var post in data) {
       cards.add(postCard(post));
-      print(post);
     }
     if (cards.isEmpty) {
       return [Center(child: Text('Found no matching posts'))];
