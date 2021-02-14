@@ -1,4 +1,4 @@
-import 'package:Blogg/search_posts.dart';
+import 'package:blogg/search_posts.dart';
 import 'package:flutter/material.dart';
 import 'search_posts.dart';
 import 'theme.dart';

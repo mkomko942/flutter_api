@@ -1,4 +1,4 @@
-name: Blogg
+name: blogg
 description: Matthew's first Flutter app.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -17,6 +17,7 @@ dependencies:
   flutter_launcher_icons: ^0.8.1
   flutter_spinkit: ^4.1.2+1
   flutter_speed_dial: ^1.2.5
+  intl: ^0.16.1
 dev_dependencies:
   build_runner: ^1.7.2
   build_test: ^0.10.12

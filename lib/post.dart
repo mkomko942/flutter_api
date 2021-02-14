@@ -1,18 +1,26 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class Post {
   final String title;
   final String body;
   final String likes;
+  final String date;
 
-  Post({this.title, this.body, this.likes});
+  Post({this.title, this.body, this.likes, this.date});
 
   factory Post.fromJson(Map<String, dynamic> json) {
+    final int millisecondsUTC = json['date'].round() * 1000;
+    final DateTime localDate =
+        DateTime.fromMillisecondsSinceEpoch(millisecondsUTC, isUtc: true).toLocal();
+    final DateFormat formatter = DateFormat.yMd().add_jm();
+    formatter.format(localDate);
     return Post(
       title: json['title'],
       body: json['body'],
       likes: json['likes'].toString(),
+      date: formatter.format(localDate),
     );
   }
 }
@@ -65,8 +73,8 @@ Future<List<Post>> fetchSearchPost(String searchterm) async {
   if (searchterm.isEmpty) {
     return fetchAllPosts();
   }
-  final response =
-  await http.get('https://flask-api.matthewtao1.repl.co/search/$searchterm');
+  final response = await http
+      .get('https://flask-api.matthewtao1.repl.co/search/$searchterm');
   List<Post> allPosts = [];
   if (response.statusCode == 200) {
     Map jsonResponse = json.decode(response.body);
