@@ -13,7 +13,8 @@ class Post {
   factory Post.fromJson(Map<String, dynamic> json) {
     final int millisecondsUTC = json['date'].round() * 1000;
     final DateTime localDate =
-        DateTime.fromMillisecondsSinceEpoch(millisecondsUTC, isUtc: true).toLocal();
+        DateTime.fromMillisecondsSinceEpoch(millisecondsUTC, isUtc: true)
+            .toLocal();
     final DateFormat formatter = DateFormat.yMd().add_jm();
     formatter.format(localDate);
     return Post(
