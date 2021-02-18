@@ -21,7 +21,6 @@ class _SearchPostsState extends State<SearchPosts> {
   @override
   void initState() {
     super.initState();
-
     posts = fetchCards(_searchQueryController.text);
   }
 
@@ -47,6 +46,10 @@ class _SearchPostsState extends State<SearchPosts> {
                           AsyncSnapshot<List<Widget>> snapshot) {
                         if (snapshot.hasData) {
                           return ListView(children: snapshot.data);
+                        } else if (snapshot.hasError) {
+                          return Center(
+                            child: Text("An error has occured"),
+                          );
                         } else {
                           return Center(
                             child: SpinKitRing(
